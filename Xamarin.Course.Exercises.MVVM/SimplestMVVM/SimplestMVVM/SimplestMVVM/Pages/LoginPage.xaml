@@ -4,12 +4,15 @@
              x:Class="SimplestMVVM.Pages.LoginPage">
   
   <StackLayout>
-    
 
-    <Entry x:Name="loginEntery"  
-           Placeholder="Indtast Login Navn" 
-           Keyboard="Numeric" 
-           FontSize="Large"/>
+    <Label x:Name1="versionTekst" Text="{Binding VersionTekst}" 
+           BackgroundColor="Gray"
+           TextColor="Fuchsia"
+           FontSize="Large"
+           />
+
+    <Entry x:Name="loginEntery" Placeholder="Indtast mobilnummer" Keyboard="Numeric" Text="{Binding LoginEntery, Mode=OneWayToSource}"
+           />
     
     <Button x:Name="loginButton" Text="Login"/>
     

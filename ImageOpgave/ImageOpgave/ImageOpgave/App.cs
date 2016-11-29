@@ -2,26 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SimplestMVVM.ViewModels;
-using SimplestMVVM.Pages;
+
 using Xamarin.Forms;
 
-namespace SimplestMVVM
+namespace ImageOpgave
 {
-    public partial class App : Application
+    public class App : Application
     {
         public App()
         {
+            // The root page of your application
+            MainPage = new ImagePage();
             
-            InitializeComponent(); //giver nogle settings vi gerne vil bruge
-
-            //create ViewModel
-            //var viewModel = new SimpleViewModel();
-            //MainPage = new SimplePage(viewModel);
-
-            var loginViewModel = new LoginViewModel(); //en instans af vores viewmodel
-            MainPage = new LoginPage(loginViewModel);
-
         }
 
         protected override void OnStart()

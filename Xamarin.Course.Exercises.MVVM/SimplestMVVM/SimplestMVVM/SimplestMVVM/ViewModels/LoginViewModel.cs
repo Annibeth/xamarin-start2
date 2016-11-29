@@ -10,11 +10,12 @@ using System.Runtime.CompilerServices;
 
 namespace SimplestMVVM.ViewModels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : INotifyPropertyChanged //interface implementeret
     {
-        private string loginEntery;
+        private string versionTekst ="1.2.4";
+        private string loginEntery ;
         private bool loginButton;
-        private string statusLabel;
+        private string statusLabel = "Status Indtast mobilnummer";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -39,12 +40,12 @@ namespace SimplestMVVM.ViewModels
                     if (!String.IsNullOrEmpty(value) || !String.IsNullOrWhiteSpace(value))
                     {
                         //test loginEntery længde
-                        if (LoginEntery.Length == 8)
+                        if (LoginEntery.Length != null &&LoginEntery.Length == 8)
                         {
 
                             LoginButton = true;
-                            StatusLabel = "Klar til at logge ind";
-
+                            StatusLabel = "Klar til at logge ind med: " +  value;
+                            
                         }
                         else
                         {
@@ -103,6 +104,18 @@ namespace SimplestMVVM.ViewModels
             }
         }
 
+        public string VersionTekst
+        {
+            get
+            {
+                return versionTekst;
+            }
 
+            set
+            {
+                versionTekst = value;
+                OnPropertyChanged(); //propertyname provided manually
+            }
+        }
     }
 }
