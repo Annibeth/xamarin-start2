@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ValueConverterForm"
+             x:Class="ValueConverterForm.ValueConverterPage"
+             Title="ValueConverter">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <local:SlideValueConverter x:Key="intSlideValueConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <StackLayout>
+    
+
+    <Label Text="0 - 300" />
+    <Slider x:Name="slider1" 
+            Minimum="0"
+            Maximum="400"
+            Value="{Binding MyValue, Converter={StaticResource intSlideValueConverter}}"
+            />
+
+    <Label Text="0 - 3" />
+    <Slider x:Name="slider2"
+            Minimum="0"
+            Maximum="3"/>
+
+  </StackLayout>
+  
+</ContentPage>
