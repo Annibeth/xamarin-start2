@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PageLayoyt.Page1"
+             Title="Jeg er side 1">
+  <StackLayout>
+    <Image Source="flyver"/>
+    <Label Text="Page1" />
+    <Button x:Name="button" Text="Vis side 2" Clicked="OnClicked" />
+  </StackLayout>
+</ContentPage>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PageLayoyt.Page2"
+             Title="Min side 2">
+
+  <StackLayout>
+    <Image Source="sprogetogdensen"/>
+    <Label Text="Page2" />
+
+    <Button x:Name="button" Text="Page1" Clicked="OnClicked" />
+    
+    
+  </StackLayout>
+  
+  
+</ContentPage>
