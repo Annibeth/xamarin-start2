@@ -5,7 +5,9 @@
              Title="Min side 2">
 
   <StackLayout>
-    <Image Source="sprogetogdensen"/>
+    <Image Source="sprogetogdansen"/>
+    
+    
     <Label Text="Page2" />
 
     <Button x:Name="button" Text="Page1" Clicked="OnClicked" />

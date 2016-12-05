@@ -17,9 +17,9 @@ namespace PageLayoyt
 
         private async void OnClicked(object sender, EventArgs e)
         {
-            //var page2 = new Page2();
-            //await Navigation.PushAsync(page2);
-            await Navigation.PushAsync(new Page2());
+            var page2 = new Page2();
+            await Navigation.PushAsync(page2);
+           // await Navigation.PushAsync(new Page2());
         }
     }
 }
