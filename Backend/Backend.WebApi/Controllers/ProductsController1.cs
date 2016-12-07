@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Backend.WebApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -45,22 +46,44 @@ namespace Backend.WebApi.Controllers
             return products;
         }
 
+        //[Route("{Id}")]
+        //[HttpGet]
+        //public IHttpActionResult GetProduct(int Id)
+        //{
+        //    var product = this.products.Where(p => p.Id == Id)
+        //        .SingleOrDefault();
+
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    else
+        //    {
+        //        return Ok(product);
+        //    }
+        //}
+
+
+
         [Route("{Id}")]
         [HttpGet]
-        public IHttpActionResult GetProduct(int Id)
+        public  Product GetProduct(int Id)
         {
             var product = this.products.Where(p => p.Id == Id)
                 .SingleOrDefault();
 
             if (product == null)
             {
-                return NotFound();
+                throw new NotFoundException();
             }
             else
             {
-                return Ok(product);
+                return product;
             }
         }
+
+
+
 
         [Route("{productId}/reviews")]
         [HttpGet]
