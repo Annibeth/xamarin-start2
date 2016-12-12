@@ -7,7 +7,7 @@ namespace WeatherApp
 {
     public class DataService
     {
-        public static async Task<JContainer> getDataFromService(string queryString)
+        public async Task<JContainer> getDataFromService(string queryString)
         {
             HttpClient client = new HttpClient();
             var response = await client.GetAsync(queryString);

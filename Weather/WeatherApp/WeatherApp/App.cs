@@ -10,8 +10,13 @@ namespace WeatherApp
     public class App : Application
     {
         public App()
+      
         {
-            MainPage = new NavigationPage(new WeatherPage());
+            var dataService = new DataService();
+            var model = new Model(dataService);
+            var viewModel = new ViewModel(model);
+
+            MainPage = new  WeatherPage(viewModel);
         }
 
         protected override void OnStart()

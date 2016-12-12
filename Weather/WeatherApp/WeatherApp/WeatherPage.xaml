@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       x:Class="WeatherApp.WeatherPage">
+       x:Class="WeatherApp.WeatherPage"
+       >
+  <!--BackgroundImage="fomap"-->
+
+
 
   <ContentPage.Resources>
     <ResourceDictionary>
@@ -13,7 +17,7 @@
         <Setter Property="TextColor">
           <OnPlatform x:TypeArguments="Color" iOS="Black" Android="White" WinPhone="White" />
         </Setter>
-        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="FontSize" Value="Small" />
       </Style>
       <Style x:Key="fieldView" TargetType="ContentView">
         <Setter Property="Padding" Value="10,0,0,0" />
@@ -21,7 +25,178 @@
     </ResourceDictionary>
   </ContentPage.Resources>
 
-  <ContentPage.Content>
+
+  <Grid>
+
+    <!--Rows-->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="100" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="10" />
+
+    </Grid.RowDefinitions>
+
+    <!--Collum-->
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+
+    </Grid.ColumnDefinitions>
+
+    <StackLayout Grid.Row="0" Grid.ColumnSpan="12" >
+
+      <StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="#545454">
+          
+          <StackLayout Padding="10,10,10,10" HorizontalOptions="Start">
+            <!--<Label Text="Søg med bynavn" TextColor="Fuchsia" FontAttributes="Bold" FontSize="Medium" />-->
+            <Label x:Name="zipCodeLabel" Text="Indtast bynavn" WidthRequest="185"  Style="{StaticResource labelStyle}" />
+            <Entry x:Name="cityEntry" />
+          </StackLayout>
+          
+          <StackLayout Padding="0,0,0,10" VerticalOptions="End">
+            <Button x:Name="getWeatherBtn" Text="Hent Vejer" WidthRequest="185" BorderWidth="1" Clicked="OnClicked">
+            </Button>
+          </StackLayout>
+          
+        </StackLayout>
+      </StackLayout>
+
+    
+    </StackLayout>
+
+    <StackLayout Grid.Row="1" Grid.ColumnSpan="9" >
+      <Label Text="række 1 over 9 kollonner" FontSize="Large" />
+      <!--<Label Text="123" FontSize="Small" />
+      <Label Text="hejsa" FontSize="Large" />-->
+      <!--<Image Source="lighticons02"/>-->
+
+      <!--<Label Text="Gundsoemagle" FontSize="Large" />-->
+      <ContentView Style="{StaticResource fieldView}">
+        <Label Text="{Binding Title}" Style="{StaticResource fieldStyle}" />
+      </ContentView>
+
+      <!--<ContentView Style="{StaticResource fieldView}">
+        <Label Text="Location" Style="{StaticResource labelStyle}" />
+      </ContentView>-->
+      <!--<ContentView Style="{StaticResource fieldView}">
+          <Label Text="{Binding Title}" Style="{StaticResource fieldStyle}" />
+        </ContentView>-->
+      <Label Text="Dato" Style="{StaticResource labelStyle}" />
+      <ContentView Style="{StaticResource fieldView}">
+        <Label x:Name="datoTid" Text="{Binding DatoTid}"
+            Style="{StaticResource fieldStyle}" />
+      </ContentView>
+      <Label Text="Temperature" Style="{StaticResource labelStyle}" />
+      <ContentView Style="{StaticResource fieldView}">
+        <Label x:Name="tempLabel" Text="{Binding Temperature}"
+            Style="{StaticResource fieldStyle}" />
+      </ContentView>
+      <Label Text="Wind Speed" Style="{StaticResource labelStyle}" />
+      <ContentView Style="{StaticResource fieldView}">
+        <Label x:Name="windLabel" Text="{Binding Wind}" Style="{StaticResource fieldStyle}" />
+      </ContentView>
+      <Label Text="Humidity" Style="{StaticResource labelStyle}" />
+      <ContentView Style="{StaticResource fieldView}">
+        <Label x:Name="humidityLabel" Text="{Binding Humidity}"
+            Style="{StaticResource fieldStyle}" />
+      </ContentView>
+      <Label Text="Visibility" Style="{StaticResource labelStyle}" />
+      <ContentView Style="{StaticResource fieldView}">
+        <Label x:Name="visibilitylabel" Text="{Binding Visibility}"
+            Style="{StaticResource fieldStyle}" />
+      </ContentView>
+      <Label Text="Time of Sunrise" Style="{StaticResource labelStyle}" />
+      <ContentView Style="{StaticResource fieldView}">
+        <Label x:Name="sunriseLabel" Text="{Binding Sunrise}"
+            Style="{StaticResource fieldStyle}" />
+      </ContentView>
+      <Label Text="Time of Sunset" Style="{StaticResource labelStyle}" />
+      <ContentView Style="{StaticResource fieldView}">
+        <Label x:Name="sunsetLabel" Text="{Binding Sunset}"
+            Style="{StaticResource fieldStyle}" />
+      </ContentView>
+
+
+    </StackLayout>
+
+    <StackLayout Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" >
+      <!--<Label Text="suk" FontSize="Large" />
+      <Label Text="123" FontSize="Small" />
+      <Label Text="hejsa" FontSize="Large" />-->
+    </StackLayout>
+
+    <StackLayout Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="3"  >
+      <!--<Label Text="suk" FontSize="Large" /> BackgroundColor="Yellow"
+      <Label Text="123" FontSize="Small" />
+      <Label Text="hejsa" FontSize="Large" />-->
+    </StackLayout>
+    <StackLayout Grid.Row="1" Grid.Column="9" Grid.ColumnSpan="3"  >
+      <!--<Label Text="suk" FontSize="Large" /> BackgroundColor="Gray"
+      <Label Text="123" FontSize="Small" />
+      <Label Text="hejsa" FontSize="Large" />-->
+    </StackLayout>
+
+    <StackLayout Grid.Row="2" Grid.ColumnSpan="4"  >
+      <!--<Label Text="suk" FontSize="Large" />
+      <Label Text="123" FontSize="Small" />
+      <Label Text="hejsa" FontSize="Large" />-->
+    </StackLayout>
+    <StackLayout Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4"  >
+      <!--<Label Text="suk" FontSize="Large" /> BackgroundColor="Red"
+      <Label Text="123" FontSize="Small" />
+      <Label Text="hejsa" FontSize="Large" />-->
+    </StackLayout>
+    <StackLayout Grid.Row="2" Grid.Column="8" Grid.ColumnSpan="4"  >
+      <!--<Label Text="suk" FontSize="Large" /> BackgroundColor="White"
+      <Label Text="123" FontSize="Small" />
+      <Label Text="hejsa" FontSize="Large" />-->
+    </StackLayout>
+
+
+
+
+
+
+    <!--<Label Text="Top left 0.0"  Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="4" BackgroundColor=
+   <Label Text="Top 0.1" Grid.Row="0" Grid.Column="1" />
+   <Label Text="Top 0.2" Grid.Row="0" Grid.Column="2" />
+   <Label Text="Top 0.3" Grid.Row="0" Grid.Column="3" />  
+   
+   <Label Text="1.0" Grid.Row="1" Grid.Column="0" BackgroundColor="Purple"/>
+   <Label Text="1.1" Grid.Row="1" Grid.Column="1" BackgroundColor="Lime"/>
+   <Label Text="1.0" Grid.Row="1" Grid.Column="2" BackgroundColor="Fuchsia"/>
+   <Label Text="1.1" Grid.Row="1" Grid.Column="3" BackgroundColor="Gray"/>
+  
+   <Label Text="1.0" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Blue"/>
+   <Label Text="1.1" Grid.Row="2" Grid.Column="1" />
+   <Label Text="1.0" Grid.Row="2" Grid.Column="2" />
+   <Label Text="1.1" Grid.Row="2" Grid.Column="3" />-->
+
+
+  </Grid>
+</ContentPage>
+
+
+
+
+
+
+
+
+<!--<ContentPage.Content>
     <ScrollView>
       <StackLayout>
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"
@@ -34,7 +209,9 @@
           </StackLayout>
           <StackLayout Padding="0,0,0,10" VerticalOptions="End">
             <Button x:Name="getWeatherBtn" Text="Get Weather" WidthRequest="185" BorderWidth="1" >
-              <!-- Set iOS colors; use defaults on other platforms -->
+              -->
+<!-- Set iOS colors; use defaults on other platforms -->
+<!--
               <Button.TextColor>
                 <OnPlatform x:TypeArguments="Color" iOS="White"/>
               </Button.TextColor>
@@ -81,5 +258,23 @@
         </StackLayout>
       </StackLayout>
     </ScrollView>
+
   </ContentPage.Content>
-</ContentPage>
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style x:Key="labelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="#a8a8a8" />
+        <Setter Property="FontSize" Value="Small" />
+      </Style>
+      <Style x:Key="fieldStyle" TargetType="Label">
+        <Setter Property="TextColor">
+          <OnPlatform x:TypeArguments="Color" iOS="Black" Android="White" WinPhone="White" />
+        </Setter>
+        <Setter Property="FontSize" Value="Medium" />
+      </Style>
+      <Style x:Key="fieldView" TargetType="ContentView">
+        <Setter Property="Padding" Value="10,0,0,0" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>-->
