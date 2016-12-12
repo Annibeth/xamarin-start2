@@ -9,7 +9,7 @@ using System.Web.Http.Results;
 
 namespace Backend.WebApi
 {
-    public class BackenExeptionHandler : IExceptionHandler
+    public class BackendExeptionHandler : IExceptionHandler
     {
         public Task HandleAsync(ExceptionHandlerContext context, CancellationToken cancellationToken)
         {

@@ -113,13 +113,14 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\VersionCheckFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="BackenExeptionHandler.cs" />
+    <Compile Include="BackendExeptionHandler.cs" />
     <Compile Include="Controllers\ProductsController1.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="NotFoundWxception.cs" />
+    <Compile Include="NotFoundException.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review.cs" />
@@ -129,6 +130,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\Annibethwebapp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\Annibethwebapp - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

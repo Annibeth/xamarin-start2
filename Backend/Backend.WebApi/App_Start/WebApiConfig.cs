@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Backend.WebApi.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -14,13 +15,14 @@ namespace Backend.WebApi
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-            config.Services.Replace(typeof(IExceptionHandler), new BackenExeptionHandler());
+            config.Services.Replace(typeof(IExceptionHandler), new BackendExeptionHandler());
+            //config.Filters.Add(new VersionCheckFilter());
 
             //config.Routes.MapHttpRoute(
             //    name: "DefaultApi",
             //    routeTemplate: "api/{controller}/{id}",
             //    defaults: new { id = RouteParameter.Optional }
             //);
-        }
+    }
     }
 }
