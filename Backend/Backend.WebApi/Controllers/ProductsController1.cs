@@ -34,7 +34,7 @@ namespace Backend.WebApi.Controllers
             new Product() {  PartitionKey="MitProdukt", RowKey = "02", Name = "Bim", Category ="Varmluft", Price = 200.00 },
             new Product() {  PartitionKey="MitProdukt", RowKey = "03", Name = "Busse", Category ="Kram", Price = 500.750 },
             new Product() {  PartitionKey="MitProdukt", RowKey = "06", Name = "Bam", Category ="Varmluft", Price = 100.00 },
-            new Product() {  PartitionKey="MitProdukt", RowKey = "04", Name = "Tusse", Category ="Kys", Price = 1500.00},
+            new Product() {  PartitionKey="MitProdukt", RowKey = "04", Name = "TusseGrim", Category ="Kys", Price = 1500.00},
             new Product() {  PartitionKey="MitProdukt", RowKey = "05", Name = "Nusse", Category ="KysKram", Price = 10.50 },
             new Product() {  PartitionKey="MitProdukt", RowKey = "11", Name = "BumBlue", Category ="Varmluft", Price = 100.00 },
             new Product() {  PartitionKey="MitProdukt", RowKey = "12", Name = "BumRead", Category ="Varmluft", Price = 100.00 },
@@ -42,8 +42,7 @@ namespace Backend.WebApi.Controllers
             new Product() {  PartitionKey="MitProdukt", RowKey = "14", Name = "BumGreen", Category ="Varmluft", Price = 100.00 },
             new Product() {  PartitionKey="MitProdukt", RowKey = "15", Name = "BumPink", Category ="Varmluft", Price = 100.00 }
         };
-
-
+        private object from;
 
         private CloudTableClient CreateTableClient()
         {
@@ -69,14 +68,49 @@ namespace Backend.WebApi.Controllers
                 var myInstans = TableOperation.InsertOrReplace(item);
                 producttabel.Execute(myInstans);
             }
+
+        }
+
+        [Route("{rowKey}")]
+        [HttpGet]
+        public Product GetProduct(string rowKey)
+        {
+            CloudTableClient tableClient = CreateTableClient();
+            
+            var  prodList = tableClient.GetTableReference("products");
+
+            var query = prodList.CreateQuery<Product>()
+                .Where(p => p.PartitionKey == "MitProdukt" && p.RowKey == rowKey)
+                .Select(p => p);
+
+            var product = query.FirstOrDefault();
+            if (product == null)
+            {
+                throw new NotFoundException();
+            }
+            else
+            {
+                return product;
+            }
         }
 
         [Route("")]
         [HttpGet]
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Product> GetAllProduct()
         {
-            return products;
+            CloudTableClient tableClient = CreateTableClient();
+
+            var prodList = tableClient.GetTableReference("products");
+
+            var query = prodList.CreateQuery<Product>();
+            return query.ToList();
         }
+        //[Route("")]
+        //[HttpGet]
+        //public IEnumerable<Product> GetAllProducts()
+        //{
+        //    return products;
+        //}
 
         //[Route("{Id}")]
         //[HttpGet]
@@ -97,33 +131,33 @@ namespace Backend.WebApi.Controllers
 
 
 
-        [Route("{Id}")]
-        [HttpGet]
-        public Product GetProduct(string Id)
-        {
-            var product = this.products.Where(p => p.RowKey == Id)
-                .SingleOrDefault();
+        //[Route("{Id}")]
+        //[HttpGet]
+        //public Product GetProduct(string Id)
+        //{
+        //    var product = this.products.Where(p => p.RowKey == Id)
+        //        .SingleOrDefault();
 
-            if (product == null)
-            {
-                throw new NotFoundException();
-            }
-            else
-            {
-                return product;
-            }
-        }
-
-
+        //    if (product == null)
+        //    {
+        //        throw new NotFoundException();
+        //    }
+        //    else
+        //    {
+        //        return product;
+        //    }
+        //}
 
 
-        [Route("{productId}/reviews")]
-        [HttpGet]
 
-        public IEnumerable<Review> GetReviewsForProduct(int productId)
-        {
-            return this.review.Where(p => p.ProductId == productId);
 
-        }
+        //[Route("{productId}/reviews")]
+        //[HttpGet]
+
+        //public IEnumerable<Review> GetReviewsForProduct(int productId)
+        //{
+        //    return this.review.Where(p => p.ProductId == productId);
+
+        //}
     }
 }
